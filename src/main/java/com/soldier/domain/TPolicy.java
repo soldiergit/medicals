@@ -16,12 +16,12 @@ public class TPolicy extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 年份
+     * 年度
      */
     private String runyear;
 
     /**
-     * 最大
+     * 封顶线
      */
     private Double maxline;
 
@@ -30,6 +30,9 @@ public class TPolicy extends BaseEntity {
      */
     private String status;
 
+    /**
+     * 报销比例
+     */
     private String remark;
 
     public void setRunyear(String runyear) {

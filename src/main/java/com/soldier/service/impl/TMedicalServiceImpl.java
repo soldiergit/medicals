@@ -6,6 +6,7 @@ import com.soldier.domain.TMedical;
 import com.soldier.mapper.TMedicalMapper;
 import com.soldier.service.ITMedicalService;
 import com.soldier.utils.Convert;
+import com.soldier.utils.UidCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,7 @@ public class TMedicalServiceImpl implements ITMedicalService {
      */
     @Override
     public int insertTMedical(TMedical tMedical) {
+        tMedical.setJgbm(UidCard.uidCard());
         return tMedicalMapper.insertTMedical(tMedical);
     }
 

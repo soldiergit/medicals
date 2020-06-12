@@ -11,6 +11,8 @@
     <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
     <!-- bootstrap-table 表格插件样式 -->
     <link th:href="@{/ajax/libs/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
+    <!-- bootstrap-datetimepicker 时间日期日历控件样式 -->
+    <link th:href="@{/ajax/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/animate.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <link th:href="@{/ruoyi/css/ry-ui.css}" rel="stylesheet"/>
@@ -21,7 +23,13 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">年度：</label>
             <div class="col-sm-8">
-                <input name="runyear" class="form-control" type="text">
+                <!--指定 date标记-->
+                <div class='input-group date' id='runyear'>
+                    <input name="runyear" type='text' class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -60,6 +68,10 @@
 <script th:src="@{/ajax/libs/bootstrap-table/extensions/mobile/bootstrap-table-mobile.js}"></script>
 <script th:src="@{/ajax/libs/bootstrap-table/extensions/toolbar/bootstrap-table-toolbar.min.js}"></script>
 <script th:src="@{/ajax/libs/bootstrap-table/extensions/columns/bootstrap-table-fixed-columns.js}"></script>
+<!-- moment-with-locales.min.js  这个得在datatimpicker.min.js之前 -->
+<script th:src="@{/js/moment-with-locales.min.js}"></script>
+<!-- bootstrap-datetimepicke 时间日期日历控件 -->
+<script th:src="@{/ajax/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
 <!-- jquery-validate 表单验证插件 -->
 <script th:src="@{/ajax/libs/validate/jquery.validate.min.js}"></script>
 <script th:src="@{/ajax/libs/validate/messages_zh.min.js}"></script>
@@ -88,6 +100,15 @@
             $.operate.save(prefix + "/add", $('#form-policy-add').serialize());
         }
     }
+
+    // 时间选择器
+    $(function () {
+        //只选择年份
+        $("#runyear").datetimepicker({
+            format: 'YYYY',
+            locale: moment.locale('zh-cn')
+        })
+    })
 </script>
 </body>
 </html>

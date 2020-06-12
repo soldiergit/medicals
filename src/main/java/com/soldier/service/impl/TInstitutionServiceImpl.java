@@ -6,6 +6,7 @@ import com.soldier.domain.TInstitution;
 import com.soldier.mapper.TInstitutionMapper;
 import com.soldier.service.ITInstitutionService;
 import com.soldier.utils.Convert;
+import com.soldier.utils.UidCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +27,12 @@ public class TInstitutionServiceImpl implements ITInstitutionService {
     /**
      * 查询机构
      *
-     * @param agencode 机构ID
+     * @param areacode 机构ID
      * @return 机构
      */
     @Override
-    public TInstitution selectTInstitutionById(String agencode) {
-        return tInstitutionMapper.selectTInstitutionById(agencode);
+    public TInstitution selectTInstitutionById(String areacode) {
+        return tInstitutionMapper.selectTInstitutionById(areacode);
     }
 
     /**
@@ -53,6 +54,7 @@ public class TInstitutionServiceImpl implements ITInstitutionService {
      */
     @Override
     public int insertTInstitution(TInstitution tInstitution) {
+        tInstitution.setAreacode(UidCard.uidCard());
         return tInstitutionMapper.insertTInstitution(tInstitution);
     }
 
@@ -81,11 +83,11 @@ public class TInstitutionServiceImpl implements ITInstitutionService {
     /**
      * 删除机构信息
      *
-     * @param agencode 机构ID
+     * @param areacode 机构ID
      * @return 结果
      */
     @Override
-    public int deleteTInstitutionById(String agencode) {
-        return tInstitutionMapper.deleteTInstitutionById(agencode);
+    public int deleteTInstitutionById(String areacode) {
+        return tInstitutionMapper.deleteTInstitutionById(areacode);
     }
 }

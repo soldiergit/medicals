@@ -26,7 +26,7 @@
 
     <select id="selectTInstitutionById" parameterType="String" resultMap="TInstitutionResult">
         <include refid="selectTInstitutionVo"/>
-        where agencode = #{agencode}
+        where areacode = #{areacode}
     </select>
 
     <insert id="insertTInstitution" parameterType="com.soldier.domain.TInstitution">
@@ -48,21 +48,21 @@
     <update id="updateTInstitution" parameterType="com.soldier.domain.TInstitution">
         update t_institution
         <trim prefix="SET" suffixOverrides=",">
-            <if test="areacode != null  and areacode != ''">areacode = #{areacode},</if>
+            <if test="agencode != null  and agencode != ''">agencode = #{agencode},</if>
             <if test="agenname != null  and agenname != ''">agenname = #{agenname},</if>
             <if test="grade != null ">grade = #{grade},</if>
         </trim>
-        where agencode = #{agencode}
+        where areacode = #{areacode}
     </update>
 
     <delete id="deleteTInstitutionById" parameterType="String">
-        delete from t_institution where agencode = #{agencode}
+        delete from t_institution where areacode = #{areacode}
     </delete>
 
     <delete id="deleteTInstitutionByIds" parameterType="String">
-        delete from t_institution where agencode in
-        <foreach item="agencode" collection="array" open="(" separator="," close=")">
-            #{agencode}
+        delete from t_institution where areacode in
+        <foreach item="areacode" collection="array" open="(" separator="," close=")">
+            #{areacode}
         </foreach>
     </delete>
 

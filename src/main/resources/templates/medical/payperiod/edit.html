@@ -11,6 +11,8 @@
     <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
     <!-- bootstrap-table 表格插件样式 -->
     <link th:href="@{/ajax/libs/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
+    <!-- bootstrap-datetimepicker 时间日期日历控件样式 -->
+    <link th:href="@{/ajax/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/animate.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <link th:href="@{/ruoyi/css/ry-ui.css}" rel="stylesheet"/>
@@ -28,13 +30,25 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">开始时间：</label>
             <div class="col-sm-8">
-                <input name="startime" th:field="*{startime}" class="form-control" type="text">
+                <!--指定 date标记-->
+                <div class='input-group date' id='startime'>
+                    <input name="startime" th:field="*{startime}" class="form-control" type="text">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">结束时间：</label>
             <div class="col-sm-8">
-                <input name="endtime" th:field="*{endtime}" class="form-control" type="text">
+                <!--指定 date标记-->
+                <div class='input-group date' id='endtime'>
+                    <input name="endtime" th:field="*{endtime}" class="form-control" type="text">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -58,6 +72,10 @@
 <script th:src="@{/ajax/libs/bootstrap-table/extensions/mobile/bootstrap-table-mobile.js}"></script>
 <script th:src="@{/ajax/libs/bootstrap-table/extensions/toolbar/bootstrap-table-toolbar.min.js}"></script>
 <script th:src="@{/ajax/libs/bootstrap-table/extensions/columns/bootstrap-table-fixed-columns.js}"></script>
+<!-- moment-with-locales.min.js  这个得在datatimpicker.min.js之前 -->
+<script th:src="@{/js/moment-with-locales.min.js}"></script>
+<!-- bootstrap-datetimepicke 时间日期日历控件 -->
+<script th:src="@{/ajax/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
 <!-- jquery-validate 表单验证插件 -->
 <script th:src="@{/ajax/libs/validate/jquery.validate.min.js}"></script>
 <script th:src="@{/ajax/libs/validate/messages_zh.min.js}"></script>
@@ -86,6 +104,28 @@
             $.operate.save(prefix + "/edit", $('#form-payperiod-edit').serialize());
         }
     }
+
+    // 时间选择器
+    $(function () {
+        // 起始时间的例子
+        var startime = $('#startime').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+            // minDate: '2016-7-1'
+        });
+        var endtime = $('#endtime').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
+        //动态设置最大值
+        startime.on('dp.change', function (e) {
+            startime.data('DateTimePicker').maxDate(e.date);
+        });
+        //动态设置最小值
+        endtime.on('dp.change', function (e) {
+            endtime.data('DateTimePicker').minDate(e.date);
+        });
+    })
 </script>
 </body>
 </html>

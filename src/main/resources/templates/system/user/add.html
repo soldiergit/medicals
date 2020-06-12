@@ -19,7 +19,7 @@
 <body>
 <div class="main-content">
     <form id="form-user-add" class="form-horizontal">
-        <input name="deptId" type="hidden" id="treeId"/>
+        <!--<input name="deptId" type="hidden" id="treeId"/>-->
         <h4 class="form-header h4">基本信息</h4>
         <div class="row">
             <div class="col-sm-6">
@@ -246,7 +246,7 @@
         }
     }
 
-    /*用户管理-新增-选择部门树*/
+    /*用户管理-新增-选择部门树
     function selectDeptTree() {
         var treeId = $("#treeId").val();
         var deptId = $.common.isEmpty(treeId) ? "100" : $("#treeId").val();
@@ -258,7 +258,7 @@
             callBack: doSubmit
         };
         $.modal.openOptions(options);
-    }
+    }*/
 
     function doSubmit(index, layero) {
         var tree = layero.find("iframe")[0].contentWindow.$._tree;

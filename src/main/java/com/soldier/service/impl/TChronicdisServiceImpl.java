@@ -6,6 +6,7 @@ import com.soldier.domain.TChronicdis;
 import com.soldier.mapper.TChronicdisMapper;
 import com.soldier.service.ITChronicdisService;
 import com.soldier.utils.Convert;
+import com.soldier.utils.UidCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,7 @@ public class TChronicdisServiceImpl implements ITChronicdisService {
      */
     @Override
     public int insertTChronicdis(TChronicdis tChronicdis) {
+        tChronicdis.setIllcode(UidCard.uidCard());
         return tChronicdisMapper.insertTChronicdis(tChronicdis);
     }
 

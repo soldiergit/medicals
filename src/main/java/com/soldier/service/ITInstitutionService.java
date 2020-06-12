@@ -17,10 +17,10 @@ public interface ITInstitutionService {
     /**
      * 查询机构
      *
-     * @param agencode 机构ID
+     * @param areacode 机构ID
      * @return 机构
      */
-    public TInstitution selectTInstitutionById(String agencode);
+    public TInstitution selectTInstitutionById(String areacode);
 
     /**
      * 查询机构列表
@@ -57,8 +57,8 @@ public interface ITInstitutionService {
     /**
      * 删除机构信息
      *
-     * @param agencode 机构ID
+     * @param areacode 机构ID
      * @return 结果
      */
-    public int deleteTInstitutionById(String agencode);
+    public int deleteTInstitutionById(String areacode);
 }

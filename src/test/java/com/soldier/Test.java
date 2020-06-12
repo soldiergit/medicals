@@ -29,16 +29,4 @@ public class Test {
             this.b = b;
         }
     }
-
-    public static void main(String[] args) {
-
-
-
-        /*String amount = "200.0";
-        String []sp = amount.split("\\.");
-        for (String a : sp) {
-            System.out.println(a);
-        }
-        System.out.println(sp[1]);*/
-    }
 }

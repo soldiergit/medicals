@@ -68,9 +68,9 @@ public class TInstitutionController extends BaseController {
     /**
      * 修改机构
      */
-    @GetMapping("/edit/{agencode}")
-    public String edit(@PathVariable("agencode") String agencode, ModelMap mmap) {
-        TInstitution tInstitution = tInstitutionService.selectTInstitutionById(agencode);
+    @GetMapping("/edit/{areacode}")
+    public String edit(@PathVariable("areacode") String areacode, ModelMap mmap) {
+        TInstitution tInstitution = tInstitutionService.selectTInstitutionById(areacode);
         mmap.put("tInstitution", tInstitution);
         return prefix + "/edit";
     }

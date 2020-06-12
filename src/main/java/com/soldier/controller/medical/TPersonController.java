@@ -78,7 +78,6 @@ public class TPersonController extends BaseController {
         return getDataTable(list);
     }
 
-
     /**
      * 查询人档案列表
      */
@@ -90,7 +89,6 @@ public class TPersonController extends BaseController {
             if (famicode != null) {
                 tPerson.setFamicode(famicode);
                 model.addAttribute("family", true);
-                System.out.println("00000000000" + famicode);
             }
         }
         startPage();
@@ -200,7 +198,7 @@ public class TPersonController extends BaseController {
         String famicode = redisUtil.get("paymentFami").toString();
         TPayment tp = new TPayment();
         tp.setFamicode(famicode);
-        //获取当前你年份，该家庭的全部成员
+        //获取当前年份，该家庭的全部成员
         tp.setRunyear(Long.parseLong(DateUtils.getCurrentYear()));
         List<TPayment> tPaymentList = itPaymentService.selectTPaymentList(tp);
         TPerson tPerson = new TPerson();

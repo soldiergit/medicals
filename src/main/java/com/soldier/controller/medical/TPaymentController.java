@@ -65,7 +65,6 @@ public class TPaymentController extends BaseController {
     @PostMapping("/paymentPerson")
     @ResponseBody
     public AjaxResult paymentPerson(String ids, String pay) {
-        System.out.println(ids + pay);
         String amount = redisUtil.get("payperiodAmount").toString();
         String famicode = redisUtil.get("paymentFami").toString();
         String creator = redisUtil.get("userName").toString();

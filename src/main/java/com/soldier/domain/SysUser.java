@@ -8,12 +8,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 用户对象 sys_user
  * @Author soldier
  * @Date 20-6-11 上午10:30
  * @Email:583406411@qq.com
  * @Version 1.0
- * @Description:
+ * @Description:用户对象sys_user
  */
 public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 1L;
@@ -22,16 +21,6 @@ public class SysUser extends BaseEntity {
      * 用户ID
      */
     private Long userId;
-
-    /**
-     * 部门ID
-     */
-    private Long deptId;
-
-    /**
-     * 部门父ID
-     */
-    private Long parentId;
 
     /**
      * 角色ID
@@ -138,22 +127,6 @@ public class SysUser extends BaseEntity {
 
     public static boolean isAdmin(Long userId) {
         return userId != null && 1L == userId;
-    }
-
-    public Long getDeptId() {
-        return deptId;
-    }
-
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
     }
 
     public Long getRoleId() {
@@ -303,7 +276,6 @@ public class SysUser extends BaseEntity {
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
                 .append("userId", getUserId())
-                .append("deptId", getDeptId())
                 .append("loginName", getLoginName())
                 .append("userName", getUserName())
                 .append("userType", getUserType())

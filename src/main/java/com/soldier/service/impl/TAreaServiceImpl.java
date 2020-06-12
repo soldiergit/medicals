@@ -6,6 +6,7 @@ import com.soldier.domain.TArea;
 import com.soldier.mapper.TAreaMapper;
 import com.soldier.service.ITAreaService;
 import com.soldier.utils.Convert;
+import com.soldier.utils.UidCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,7 @@ public class TAreaServiceImpl implements ITAreaService {
      */
     @Override
     public int insertTArea(TArea tArea) {
+        tArea.setAreacode(UidCard.uidCard());
         return tAreaMapper.insertTArea(tArea);
     }
 

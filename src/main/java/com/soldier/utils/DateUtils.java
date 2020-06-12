@@ -160,11 +160,4 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         Date date = new Date();
         return sdf.format(date);
     }
-
-    public static void main(String[] args) {
-
-        System.out.println(getCurrentYear()
-        );
-        //System.out.println(getDatePoor(strToDate("2020-08-02"), strToDate(getDate())));
-    }
 }

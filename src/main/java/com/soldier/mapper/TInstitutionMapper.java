@@ -17,10 +17,10 @@ public interface TInstitutionMapper {
     /**
      * 查询机构
      *
-     * @param agencode 机构ID
+     * @param areacode 机构ID
      * @return 机构
      */
-    public TInstitution selectTInstitutionById(String agencode);
+    public TInstitution selectTInstitutionById(String areacode);
 
     /**
      * 查询机构列表
@@ -49,16 +49,16 @@ public interface TInstitutionMapper {
     /**
      * 删除机构
      *
-     * @param agencode 机构ID
+     * @param areacode 机构ID
      * @return 结果
      */
-    public int deleteTInstitutionById(String agencode);
+    public int deleteTInstitutionById(String areacode);
 
     /**
      * 批量删除机构
      *
-     * @param agencodes 需要删除的数据ID
+     * @param areacodes 需要删除的数据ID
      * @return 结果
      */
-    public int deleteTInstitutionByIds(String[] agencodes);
+    public int deleteTInstitutionByIds(String[] areacodes);
 }
