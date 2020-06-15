@@ -89,4 +89,11 @@ public class SysLoginController extends BaseController {
         redisUtil.del("sysUser", "userId");
         return "/login";
     }
+
+    // 主题
+    @GetMapping("/theme")
+    public String theme() {
+        return "/theme";
+    }
+
 }

@@ -173,15 +173,6 @@
                 {
                     field: 'telephone',
                     title: '电话'
-                },
-                {
-                    title: '操作',
-                    align: 'center',
-                    formatter: function (value, row, index) {
-                        var actions = [];
-                        //actions.push('<a class="btn btn-success btn-xs " href="javascript:void(0)" onclick="payment(\'' + row.perscode + '\')"><i class="fa fa-edit"></i>缴费</a> ');
-                        return actions.join('');
-                    }
                 }]
         };
         $.table.init(options);

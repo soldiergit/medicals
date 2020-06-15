@@ -61,6 +61,17 @@ spring:
     restart:
       # 热部署开关
       enabled: true
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+    timeout: 300
+    password: 123456
 
 # MyBatis
 mybatis:
