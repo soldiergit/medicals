@@ -84,7 +84,7 @@ public class TPaymentController extends BaseController {
             tPaymentService.insertTPayment(tPayment);
         }
 
-        redisUtil.del("payperiodAmount", "paymentFami", "paymentNum");
+        redisUtil.del("payperiodAmount",  "paymentNum");
 
         return success("付款成功！");
     }

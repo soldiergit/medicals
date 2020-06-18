@@ -91,17 +91,17 @@ public class ReimburseController extends BaseController {
                     TPayment tpa = new TPayment();
                     tpa.setPerscode(tPerson.getPerscode());
                     List<TPayment> tPayment = paymentService.selectTPaymentList(tpa);
-                    if (tPayment != null) {
+                    if (tPayment != null && tPayment.size() > 0) {
                         TChronicinfo tChronicinfo = new TChronicinfo();
                         tChronicinfo.setPerscode(tPayment.get(0).getPerscode());
                         List<TChronicinfo> tChronicinfoList = itChronicinfoService.selectTChronicinfoList(tChronicinfo);
-                        if (tChronicinfoList != null) {
+                        if (tChronicinfoList != null ) {
                             Reimburse reim = new Reimburse();
                             reim.setReiNo(UidCard.uidCard());
                             reim.setIdCard(reimburse.getIdCard());
                             reim.setChroNo(tPerson.getRuralCard());
                             reim.setCreaTime(DateUtils.getNowDate());
-                            reim.setDiseaseName(tChronicinfoList.get(0).getIllcode());
+
                             reim.setStatus("0");
                             reimburseService.insertReimburse(reim);
                         }

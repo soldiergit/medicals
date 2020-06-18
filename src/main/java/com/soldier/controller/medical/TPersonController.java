@@ -67,8 +67,16 @@ public class TPersonController extends BaseController {
     @PostMapping("/details/list")
     @ResponseBody
     public TableDataInfo detailsList(TPerson tPerson) {
+
+
         if (redisUtil.hasKey("famicode")) {
             if (redisUtil.get("famicode") != null) {
+                tPerson.setFamicode(redisUtil.get("famicode").toString());
+            }
+        }
+
+        if (redisUtil.hasKey("famiCodes")) {
+            if (redisUtil.get("famiCodes") != null) {
                 tPerson.setFamicode(redisUtil.get("famicode").toString());
             }
         }
@@ -136,9 +144,6 @@ public class TPersonController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(TPerson tPerson) {
-        if (repeatCard(tPerson.getCardId()) == false) {
-            return error("身份证已经存在");
-        }
 
         TPerson tpe = new TPerson();
         if (redisUtil.hasKey("famiCodes")) {
@@ -198,23 +203,30 @@ public class TPersonController extends BaseController {
         String famicode = redisUtil.get("paymentFami").toString();
         TPayment tp = new TPayment();
         tp.setFamicode(famicode);
-        //获取当前年份，该家庭的全部成员
+        //获取当前你年份，该家庭的全部成员
         tp.setRunyear(Long.parseLong(DateUtils.getCurrentYear()));
         List<TPayment> tPaymentList = itPaymentService.selectTPaymentList(tp);
         TPerson tPerson = new TPerson();
         List<TPerson> tPersonLists = new ArrayList<>();
         tPerson.setFamicode(famicode);
         List<TPerson> tPersonList = tPersonService.selectTPersonList(tPerson);
-        for (TPerson t : tPersonList) {
-            for (TPayment tm : tPaymentList) {
-                if (!t.getPerscode().equals(tm.getPerscode())) {
-                    tPersonLists.add(t);
+        if (tPaymentList.size() == 0) {
+            redisUtil.set("paymentNum",tPersonList.size(), 60*5);
+            return getDataTable(tPersonList);
+        }else {
+            for (TPerson t : tPersonList) {
+                for (TPayment tm : tPaymentList) {
+                    if ( ! t.getPerscode().equals(tm.getPerscode())) {
+                        tPersonLists.add(t);
+                    }
                 }
             }
+            redisUtil.set("paymentNum",tPersonLists.size(), 60*5);
+            return getDataTable(tPersonLists);
         }
-        redisUtil.set("paymentNum", tPersonLists.size(), 60 * 5);
-        return getDataTable(tPersonLists);
+
     }
+
 
 
     /**
